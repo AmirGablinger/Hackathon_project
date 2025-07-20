@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lil Vegas</title>
+    <style>
+        body {
+            background-color: purple;
+            font-family: 'Papyrus', fantasy;
+            color: white;
+            text-align: center;
+        }
+        input[type="button"] {
+            font-size: 24px;
+            padding: 15px 30px;
+            background-color: gold;
+            border: none;
+            border-radius: 10px;
+        }
+        input[type="submit"] {
+            font-size: 24px;
+            padding: 15px 30px;
+            background-color: gold;
+            border: none;
+            border-radius: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Lil Vegas 🎲</h1>
+    <form action="/" method="post">
+        <p>Login:</p>
+        <label for="na">Name:</label>
+        <input type="text" id="na" name="na" required>
+        <br><br>
+
+        <label for="ps">Password:</label>
+        <input type="password" id="ps" name="ps" required>
+        <br><br>
+
+        <label for="ca">Amount of money$:</label>
+        <input type="number" id="ca" name="ca" required>
+        <br><br>
+
+        <input type="submit" value="Submit">
+
+        <input type="button" value="Signin" onclick="location.href='/signin'">
+
+        {% if error %}
+        <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+    </form>
+</body>
+</html>

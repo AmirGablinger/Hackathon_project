@@ -1,0 +1,35 @@
+list of things to implement in the Gambling project:
+Part 1
+1. Python (especially flask)
+2. HTML
+3. Postgres
+
+part 2
+4. Kubernetes files
+5. Dockerfile
+6. Dockerhub
+
+part 3
+7. Terraform in azure devops
+8. Github action or Gitlab agents (CI/CD)
+9. Pytest TDD BDD
+
+part 4 bonus
+10. Monitoring and security
+
+
+
+
+
+
+
+dockerfile
+pull image postgres
+default password so no need to squable in secret!! you can do it in a command
+
+
+
+
+
+
+

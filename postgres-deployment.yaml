@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lilvegas
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lilvegas
+  template:
+    metadata:
+      labels:
+        app: lilvegas
+    spec:
+      containers:
+        - name: lilvegas
+          image: amirgablinger/lilvegas:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: db-secret
+          env:
+            - name: POSTGRES_HOST
+              value: "postgres"

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blackjack</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: 'Papyrus', fantasy;
+            text-align: center;
+        }
+        input[type="number"], button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: gold;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🃏 Blackjack 🃏</h1>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    {% if not game %}
+        <form method="post">
+            <input type="hidden" name="action" value="start">
+            <input type="number" name="bet" placeholder="Enter your bet">
+            <button type="submit">Start Game</button>
+        </form>
+    {% else %}
+        <p><strong>Your Cards:</strong> {{ game.player }} (Total: {{ game.player | sum }})</p>
+        <p><strong>Dealer Cards:</strong> {{ game.dealer }} {% if game.game_over %}(Total: {{ game.dealer | sum }}){% endif %}</p>
+
+        {% if not game.game_over %}
+            <form method="post" style="display:inline;">
+                <input type="hidden" name="action" value="hit">
+                <button type="submit">Hit</button>
+            </form>
+            <form method="post" style="display:inline;">
+                <input type="hidden" name="action" value="stand">
+                <button type="submit">Stand</button>
+            </form>
+        {% else %}
+            {% if game.result.outcome == 'win' %}
+                <p style="color:green;">🎉 You won!</p>
+            {% else %}
+                <p style="color:red;">😢 You lost.</p>
+            {% endif %}
+            <p>New Balance: ${{ game.result.new_money }}</p>
+            <form method="post">
+                <input type="hidden" name="action" value="start">
+                <input type="number" name="bet" placeholder="Enter your bet">
+                <button type="submit">Play Again</button> <!-- אני צריך את זה?-->
+            </form>
+        {% endif %}
+    {% endif %}
+
+
+    <br><br>
+    <a href="/games">Back to Games</a>
+</body>
+</html>

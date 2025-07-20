@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slot Machine</title>
+    <style>
+        body {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            font-family: 'Papyrus', fantasy;
+        }
+        input[type="number"], input[type="submit"] {
+            font-size: 24px;
+            padding: 15px 30px;
+            background-color: gold;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎰 Lil Vegas 🎲 Slot Machine 🎰</h1>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+        <input type="number" name="bet" placeholder="Enter your bet">
+        <input type="submit" value="Spin!">
+    </form>
+
+    {% if result %}
+        <h2>Result:</h2>
+        <p style="font-size: 2rem;">{{ result.row[0] }} {{ result.row[1] }} {{ result.row[2] }}</p>
+        {% if result.payout > 0 %}
+            <p style="color: gold;">🎉 You won ${{ result.payout }}!</p>
+        {% else %}
+            <p>😢 Better luck next time.</p>
+        {% endif %}
+        <p>New Balance: ${{ result.new_balance }}</p>
+    {% endif %}
+
+    <br><br>
+    <a href="/games">Back to Games</a>
+</body>
+</html>
